@@ -2,3 +2,4 @@ vent
 .idea
 __pycache__
 venv/*
+feature_config.json

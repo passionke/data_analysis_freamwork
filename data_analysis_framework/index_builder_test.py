@@ -1,5 +1,5 @@
 
-import index_builder
+from data_analysis_framework import index_builder
 
 ib = index_builder.IndexBuilder("./config/features.json")
 

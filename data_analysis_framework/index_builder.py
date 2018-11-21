@@ -1,13 +1,13 @@
-import sql_meta_parse
-from table_view import TableView
-import sql_format
+from data_analysis_framework import sql_meta_parse
+from data_analysis_framework import table_view
+from data_analysis_framework import formatter
 
 
 class IndexBuilder:
     filter_expressions = set()
     agg_expressions = set()
     view = None
-    table_view = TableView()
+    table_view = table_view.TableView()
 
     def __init__(self, path):
         self.table_view.load(path)
@@ -35,6 +35,6 @@ class IndexBuilder:
         columns = sql_meta_parse.get_query_columns(sql)
         from_sql = self.table_view.sql_gen(columns)
         final_sql = self.build_final_sql(from_sql)
-        pretty_sql = sql_format.format(final_sql)
+        pretty_sql = formatter.format_sql(final_sql)
         return pretty_sql
 

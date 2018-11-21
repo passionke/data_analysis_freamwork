@@ -1,4 +1,4 @@
-import sql_meta_parse
+from data_analysis_framework import sql_meta_parse
 
 
 # fields = sql_meta_parse.get_query_columns("select case when p > 0 then 1 else 0 end as cs from c where g > f")

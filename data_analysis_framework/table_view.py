@@ -1,4 +1,4 @@
-from config import Config
+from data_analysis_framework import config
 
 
 class TableView:
@@ -7,9 +7,9 @@ class TableView:
     cfg = None
 
     def load(self, path):
-        config = Config()
-        config.load(path)
-        self.cfg = config
+        cfg = config.Config()
+        cfg.load(path)
+        self.cfg = cfg
 
     def get_type(self, dim):
         if dim in self.cfg.fields:

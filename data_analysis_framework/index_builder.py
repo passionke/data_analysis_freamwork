@@ -17,7 +17,8 @@ class IndexBuilder:
         return self
 
     def agg(self, agg_exp):
-        self.agg_expressions.add(agg_exp)
+        for ae in agg_exp:
+            self.agg_expressions.add(ae)
         return self
 
     def build_pre_sql(self):

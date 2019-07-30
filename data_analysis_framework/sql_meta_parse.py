@@ -55,7 +55,7 @@ def get_query_columns(query):
     # print(preprocess_query(query))
 
     keywords_ignored = ['AS', 'AND', 'OR', 'IN', 'IS', 'NOT', 'NOT NULL', 'LIKE']
-    functions_ignored = ['COUNT', 'MIN', 'MAX', 'FROM_UNIXTIME', 'DATE_FORMAT', 'CAST']
+    functions_ignored = ['COUNT', 'MIN', 'MAX', 'FROM_UNIXTIME', 'DATE_FORMAT', 'CAST', 'DATEDIFF']
 
     tokens = get_query_tokens(query)
     for token in tokens:
@@ -65,7 +65,7 @@ def get_query_columns(query):
             # print('keyword', last_keyword)
         elif token.ttype is Name:
             # analyze the name tokens, column names and where condition values
-            if last_keyword in ['SELECT', 'WHERE', 'BY', 'WHEN', 'THEN'] and last_token not in ['AS']:
+            if last_keyword in ['SELECT', 'WHERE', 'BY', 'WHEN', 'THEN', 'TRUE'] and last_token not in ['AS']:
                 # print(last_keyword, last_token, token.value)
 
                 if token.value not in columns \

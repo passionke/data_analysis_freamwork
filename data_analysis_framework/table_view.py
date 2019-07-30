@@ -29,9 +29,19 @@ class TableView:
               str(self.i) + "." + self.cfg.join_key
         return sql
 
-    def sql_gen(self, dims):
+    def sql_gen(self, dims, extra_dim=None):
         main_dim = dims[0]
+        pre_dependency = "\n".join(map(lambda x: "--@extra_input=adm_ddm_app_mct_smdc_pid_index_ds_" + str(x), dims))
         groups = map(lambda dim: self.group(self.cfg.table, dim), dims[1:])
-        raw_sql = "select " + ",\n".join(dims) + " \n from " + self.sub_query(self.cfg.table, main_dim) + " \n ".join(
-            groups)
-        return raw_sql
+        if extra_dim is not None:
+            raw_sql = "select " + ",\n".join(dims) + " , " + extra_dim + " \n from " + self.sub_query(self.cfg.table,
+                                                                                                      main_dim) + " \n ".join(
+                groups)
+        else:
+            raw_sql = "select " + ",\n".join(dims) + " \n from " + self.sub_query(self.cfg.table,
+                                                                                  main_dim) + " \n ".join(
+                groups)
+        return pre_dependency + "\n" + raw_sql
+
+    def sql_gen_all(self):
+        return self.sql_gen(list(self.cfg.fields.keys()))

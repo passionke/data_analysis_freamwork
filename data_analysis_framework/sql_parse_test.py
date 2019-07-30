@@ -13,7 +13,13 @@ from data_analysis_framework import sql_meta_parse
 # print(fields)
 
 
-fields = sql_meta_parse.get_query_columns("select if(a is not null, c, d) where g > f")
+fields = sql_meta_parse.get_query_columns("""
+SELECT
+used_smdc_trd_cnt_7d
+FROM placeHolder
+WHERE
+true and buy_qr_materiel = 1 and used_smdc_trd_cnt_7d is not null
+""")
 
 
 print(fields)

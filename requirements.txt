@@ -1,4 +1,4 @@
 sqlparse==0.2.4
 pygments_pprint_sql==0.1.0
 setuptools==39.1.0
-Pygments==2.2.0
+Pygments==2.7.4
